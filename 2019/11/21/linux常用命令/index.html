@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="alternate" href="/atom.xml" title="高老汉" type="application/atom+xml">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.5.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="1. 文件操作1.1 删除文件或目录命令 选项 参数1 参数2ls -l (以长格式) &#x2F;shutdown -h now重启 shutdown -r now &#x3D;&#x3D;&#x3D; rebootlinux 目录 根目录 &#x2F;&#x2F;bin  存放命令的目录  普通用户和超级root用户 &#x2F;sbin 存放命令的目录 只有root用户可以使用 &#x2F;boot 启动目录 &#x2F;dev 设备文件存放的目录 例如硬盘 &#x2F;etc 配置文件">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux常用命令">
+<meta property="og:url" content="http://yoursite.com/2019/11/21/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/index.html">
+<meta property="og:site_name" content="高老汉">
+<meta property="og:description" content="1. 文件操作1.1 删除文件或目录命令 选项 参数1 参数2ls -l (以长格式) &#x2F;shutdown -h now重启 shutdown -r now &#x3D;&#x3D;&#x3D; rebootlinux 目录 根目录 &#x2F;&#x2F;bin  存放命令的目录  普通用户和超级root用户 &#x2F;sbin 存放命令的目录 只有root用户可以使用 &#x2F;boot 启动目录 &#x2F;dev 设备文件存放的目录 例如硬盘 &#x2F;etc 配置文件">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2019-11-21T12:55:05.000Z">
+<meta property="article:modified_time" content="2020-02-24T15:22:20.562Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2019/11/21/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>linux常用命令 | 高老汉</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">高老汉</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/21/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="高老汉">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          linux常用命令
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-11-21 20:55:05" itemprop="dateCreated datePublished" datetime="2019-11-21T20:55:05+08:00">2019-11-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-02-24 23:22:20" itemprop="dateModified" datetime="2020-02-24T23:22:20+08:00">2020-02-24</time>
+              </span>
+
+          
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="1-文件操作"><a href="#1-文件操作" class="headerlink" title="1. 文件操作"></a>1. 文件操作</h2><h3 id="1-1-删除文件或目录"><a href="#1-1-删除文件或目录" class="headerlink" title="1.1 删除文件或目录"></a>1.1 删除文件或目录</h3><p>命令 选项 参数1 参数2<br>ls -l (以长格式) /<br>shutdown -h now<br>重启 shutdown -r now === reboot</p><p>linux 目录 根目录 /<br>/bin  存放命令的目录  普通用户和超级root用户<br> /sbin 存放命令的目录 只有root用户可以使用<br> /boot 启动目录<br> /dev 设备文件存放的目录 例如硬盘<br> /etc 配置文件<br> /lib 函数库<br> /home 普通用户目录<br> /mnt U盘等挂载的<br> /media 媒体设备挂在目录<br> /opt 第三方软件安装目录<br> /root<br> /tmp 临时文件存放<br> /proc 存放的文件直接加载到内存中<br> /srv 服务存放数据的目录<br> /usr 系统软件存放的目录<br> /var 软件相关的文档目录</p><a id="more"></a>
+
+<p> ls -l  /etc 以长格式输出 显示文件权限 所有组 归谁管理 大小<br> ls -al /etc 显示隐藏的文件<br> ls -a 显示所有文件 包含隐藏文件<br> ls -alh h表示以我们方便的形式展示<br> ls -alhS 文件按照大小顺序排列<br> ls -alhSr 按照大小倒叙排列</p>
+<p>ls –help 查看文件帮助<br>man ls 也可以查看ls 的帮助<br> pwd 查看当前命令<br> cd ..<br> cd ~ 到家目录<br> mkdir a 创建目录<br>mkdir /root/b<br>mkdir -p c/d 依次创建目录</p>
+<p>rmdir a 删除目录<br>rmdir -p c/d/e 依次删除所有目录</p>
+<p>文件查看 </p>
+<p>cat -n a.txt 显示行号<br>more a.txt 一页一页显示 按空格一页显示 回车 一行行显示<br>q退出<br>head 看前面几行 tail 显示最后几行</p>
+<p>复制<br>cp （-r 循环复制目录） 来源文件（可以多个） 目标文件<br>cp a.txt diraaa<br>cp a.txt b.txt diraaa 最后一个参数必须是文件夹<br>cp a.txt diraaa/c.txt 并且文件名字为c.txt<br>cp -r bbb ccc 可以复制目录 -r循环复制bbb中内容<br>mv 来源文件 目标文件<br>rm -rf 文件或目录 删除</p>
+<p>mv a.txt ddd  移动到新的目录<br>mv a.txt ddd/c.txt 移动同时修改名字<br>mv a.txt b.txt 当前目录下进行改名字<br>mv aaa ddd 可以移动目录</p>
+<p>rm a.txt  输入y才可以删除<br>rm ./* 删除当前目录下所有文件<br>rm -r bbb 删除目录</p>
+<p>查找<br>which 命令名  查找命令所在目录<br>特定目录查找 whereis 文件或目录 在几个特定目录查找</p>
+<p>find 目录 [-name/user/size] 参数</p>
+<p>find  ./ 当前目录下 -name 查找名称 1.txt 文件名<br>find / -name 1.txt 根目录下查找<br>find / -name ‘passwd’<br>find / -name ‘pass*’ *表示任意的个数的任意字符<br>find / -name ‘pass??’ ? 表示任意单个字符<br>find / -user ‘root’ 查找root用户创建的文件</p>
+<p>用户管理：<br>查看当前连接的用户：who<br> useradd [-g 群组] 用户名</p>
+<p> sudo useradd -g root gaoguqi<br> sudo passwd gaoguqi 给用户设置密码</p>
+<p> passwd 用户名<br> userdel [-r] 用户名 -r 同时删除用户家目录</p>
+<p> groups [用户名]<br> groupadd 群组名<br> groupdel 名<br> usermod -g 群组名 用户名<br>群组管理：</p>
+<p>r 读<br>w 写<br>x 执行<br>ls -l<br>文件类型 所有者权限 所属组权限 其它用户权限<br>d rwx r-x r-x</p>
+<ul>
+<li>表示文件<br>d 表示目录<br>l 表示连接</li>
+</ul>
+<p>chown -R 用户名 文件或目录 -R递归处理目录所有内容<br>chown -R 用户名:组名 文件或目录 -R递归处理目录所有内容<br>chgrp -R 组名 文件或目录 -R递归处理目录所有内容</p>
+<p>修改权限<br>chmod - R xyz 文件或目录<br>x所有者权限 y 所属组权限 z 其它用户权限<br>r 4 w 2 x 1<br>7表示rwx<br>chmod -R 777 gaotao<br>chmod -R 755 gaotao </p>
+<p>或者<br>chmod -R xyz 文件目录<br>x 角色 u  所属用户g 所有组o 其它用户 a全部<br>y +- 增加或者取消<br>z r w x</p>
+<p>gzip bizp2 xz tar 打包 zip<br>tar [-ctxzjJvf] 压缩文件 [源文件]<br>c 打包压缩 t 查看内容 x 解打包解压缩<br>z 使用 gzip方式 j 使用bzip2 方式 J 使用xz 方式<br>v显示过程 f 指定压缩包名</p>
+<p>tar -cvf mytar.tar 1.txt </p>
+<p>tar -cvf mytar.tar aaadir</p>
+<p>使用gzip方式压缩打包<br>tar -czvf mytar.tar.gz 1.txt </p>
+<p>tar -czvf mytar.tar.gz aaadir</p>
+<p>查看压缩包内容<br>tar -tvf mytar.tar</p>
+<p>tar -tzvf mytar.tar.gz </p>
+<p>rm -rf *.txt 删除所有txt文件</p>
+<p>curl wget 下载<br>tar 解压<br>编译前配置 ./configure<br>make<br>make clean</p>
+<p>下载rmp包<br>rmp -ivh 软件包<br>i安装 v显示详细信息 h 显示进度<br>rpm -q 安装包 查询是否安装<br>rmp -e 安装包 卸载</p>
+<p>从yum源获取<br>yum list 名称 查询可以安装的软件包<br>yum -y install 软件包</p>
+<p>yum remove  卸载<br>yum update 更新</p>
+<p>apt-get install</p>
+<p>ifconfig 查看ip地址<br>uname -a 显示Linux内核版本和系统<br>x86-64表示64位<br>cat /proc/version 查看linux 版本</p>
+<h2 id="2-常用命令"><a href="#2-常用命令" class="headerlink" title="2. 常用命令"></a>2. 常用命令</h2><h3 id="2-1-文件操作"><a href="#2-1-文件操作" class="headerlink" title="2.1 文件操作"></a>2.1 文件操作</h3><p>###2.2 vim 命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">创建文件 touch a.txt</span><br><span class="line">vi 命令模式  </span><br><span class="line">dd 剪切当前行</span><br><span class="line">yy复制当前行</span><br><span class="line">p 黏贴 光标下一行黏贴 shift p 光标上一行黏贴</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">a 光标后插入</span><br><span class="line">A 当前行之后插入</span><br><span class="line">i 光标前插入</span><br><span class="line">I 当前行之前插入</span><br><span class="line">o 当前行之下插入</span><br><span class="line">O 上一行插入</span><br><span class="line">编辑模式 </span><br><span class="line"></span><br><span class="line">: 或&#x2F; 进入 行模式</span><br><span class="line">w保存 </span><br><span class="line">wq 保存并退出</span><br><span class="line">q 退出</span><br><span class="line">q! 不保存退出</span><br><span class="line">:set nu 显示行号</span><br><span class="line">clear 清除屏幕</span><br></pre></td></tr></table></figure>
+<h3 id="2-3-进程管理"><a href="#2-3-进程管理" class="headerlink" title="2.3 进程管理"></a>2.3 进程管理</h3><p>w 查看当前登录用户<br>ps -ef | grep pts 查看当前用户进程<br>kill -9 进程号 杀掉进程</p>
+<h2 id="3-常见问题"><a href="#3-常见问题" class="headerlink" title="3. 常见问题"></a>3. 常见问题</h2><h3 id="3-1-远程连接客户端putty"><a href="#3-1-远程连接客户端putty" class="headerlink" title="3.1 远程连接客户端putty"></a>3.1 远程连接客户端putty</h3><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">--putty经常自动断开的问题</span><br><span class="line">vim /etc/ssh/sshd_config</span><br><span class="line">添加</span><br><span class="line">ClientAliveInterval 30</span><br><span class="line">ClientAliveCountMax 86400</span><br><span class="line">这两行的意思分别是</span><br><span class="line">1、服务端每隔多少秒向客户端发送一个心跳数据</span><br><span class="line">2、客户端多少次没有相应，服务器自动断掉连接</span><br><span class="line">然后重启service sshd restart</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2019/11/21/sublime%E4%B8%8B%E4%BD%BF%E7%94%A8markdown%E6%8C%87%E5%8D%97/" rel="next" title="Sublime下使用Markdown指南">
+                  <i class="fa fa-chevron-left"></i> Sublime下使用Markdown指南
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+                <a href="/2019/11/21/Windows-PowerShell%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" rel="prev" title="Windows PowerShell使用指南">
+                  Windows PowerShell使用指南 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-文件操作"><span class="nav-number">1.</span> <span class="nav-text">1. 文件操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-删除文件或目录"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 删除文件或目录</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-常用命令"><span class="nav-number">2.</span> <span class="nav-text">2. 常用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-文件操作"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 文件操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-进程管理"><span class="nav-number">2.2.</span> <span class="nav-text">2.3 进程管理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-常见问题"><span class="nav-number">3.</span> <span class="nav-text">3. 常见问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-远程连接客户端putty"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 远程连接客户端putty</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">36</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+
+
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"gaolaohan.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="1. 文件操作1.1 删除文件或目录命令 选项 参数1 参数2ls -l (以长格式) &#x2F;shutdown -h now重启 shutdown -r now &#x3D;&#x3D;&#x3D; reboot linux 目录 根目录 &#x2F;&#x2F;bin  存放命令的目录  普通用户和超级root用户 &#x2F;sbin 存放命令的目录 只有root用户可以使用 &#x2F;boot 启动目录 &#x2F;dev 设备文件存放的目录 例如硬盘 &#x2F;etc 配置文件">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux常用命令">
+<meta property="og:url" content="http://gaolaohan.com/2019/11/21/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/index.html">
+<meta property="og:site_name" content="高老汉">
+<meta property="og:description" content="1. 文件操作1.1 删除文件或目录命令 选项 参数1 参数2ls -l (以长格式) &#x2F;shutdown -h now重启 shutdown -r now &#x3D;&#x3D;&#x3D; reboot linux 目录 根目录 &#x2F;&#x2F;bin  存放命令的目录  普通用户和超级root用户 &#x2F;sbin 存放命令的目录 只有root用户可以使用 &#x2F;boot 启动目录 &#x2F;dev 设备文件存放的目录 例如硬盘 &#x2F;etc 配置文件">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-11-21T12:55:05.000Z">
+<meta property="article:modified_time" content="2022-10-22T15:02:02.389Z">
+<meta property="article:author" content="Gao Laohan">
+<meta property="article:tag" content="linux">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://gaolaohan.com/2019/11/21/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://gaolaohan.com/2019/11/21/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/","path":"2019/11/21/linux常用命令/","title":"linux常用命令"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>linux常用命令 | 高老汉</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">高老汉</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C"><span class="nav-number">1.</span> <span class="nav-text">1. 文件操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6%E6%88%96%E7%9B%AE%E5%BD%95"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 删除文件或目录</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="nav-number">2.</span> <span class="nav-text">2. 常用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 文件操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86"><span class="nav-number">2.2.</span> <span class="nav-text">2.3 进程管理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98"><span class="nav-number">3.</span> <span class="nav-text">3. 常见问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E5%AE%A2%E6%88%B7%E7%AB%AFputty"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 远程连接客户端putty</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Gao Laohan"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">Gao Laohan</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://gaolaohan.com/2019/11/21/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Gao Laohan">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="高老汉">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          linux常用命令
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-11-21 20:55:05" itemprop="dateCreated datePublished" datetime="2019-11-21T20:55:05+08:00">2019-11-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-10-22 23:02:02" itemprop="dateModified" datetime="2022-10-22T23:02:02+08:00">2022-10-22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">编程</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="1-文件操作"><a href="#1-文件操作" class="headerlink" title="1. 文件操作"></a>1. 文件操作</h2><h3 id="1-1-删除文件或目录"><a href="#1-1-删除文件或目录" class="headerlink" title="1.1 删除文件或目录"></a>1.1 删除文件或目录</h3><p>命令 选项 参数1 参数2<br>ls -l (以长格式) /<br>shutdown -h now<br>重启 shutdown -r now === reboot</p>
+<p>linux 目录 根目录 /<br>/bin  存放命令的目录  普通用户和超级root用户<br> /sbin 存放命令的目录 只有root用户可以使用<br> /boot 启动目录<br> /dev 设备文件存放的目录 例如硬盘<br> /etc 配置文件<br> /lib 函数库<br> /home 普通用户目录<br> /mnt U盘等挂载的<br> /media 媒体设备挂在目录<br> /opt 第三方软件安装目录<br> /root<br> /tmp 临时文件存放<br> /proc 存放的文件直接加载到内存中<br> /srv 服务存放数据的目录<br> /usr 系统软件存放的目录<br> /var 软件相关的文档目录</p>
+<p> ls -l  /etc 以长格式输出 显示文件权限 所有组 归谁管理 大小<br> ls -al /etc 显示隐藏的文件<br> ls -a 显示所有文件 包含隐藏文件<br> ls -alh h表示以我们方便的形式展示<br> ls -alhS 文件按照大小顺序排列<br> ls -alhSr 按照大小倒叙排列</p>
+<p>ls –help 查看文件帮助<br>man ls 也可以查看ls 的帮助<br> pwd 查看当前路径<br> cd ..<br> cd ~ 到家目录<br> mkdir a 创建目录<br>mkdir /root/b<br>mkdir -p c/d 依次逐级创建目录</p>
+<p>rmdir a 删除目录<br>rmdir -p c/d/e 依次删除所有目录</p>
+<p>文件查看 </p>
+<p>cat -n a.txt 显示行号<br>more a.txt 一页一页显示 按空格一页显示 回车 一行行显示<br>q退出<br>head 看前面几行 tail 显示最后几行</p>
+<p>复制<br>cp （-r 循环复制目录） 来源文件（可以多个） 目标文件<br>cp a.txt diraaa<br>cp a.txt b.txt diraaa 最后一个参数必须是文件夹<br>cp a.txt diraaa/c.txt 并且文件名字为c.txt<br>cp -r bbb ccc 可以复制目录 -r循环复制bbb中内容<br>mv 来源文件 目标文件<br>rm -rf 文件或目录 删除</p>
+<p>mv a.txt ddd  移动到新的目录<br>mv a.txt ddd/c.txt 移动同时修改名字<br>mv a.txt b.txt 当前目录下进行改名字<br>mv aaa ddd 可以移动目录</p>
+<p>rm a.txt  输入y才可以删除<br>rm ./* 删除当前目录下所有文件<br>rm -r bbb 删除目录</p>
+<p>查找<br>which 命令名  查找命令所在目录<br>特定目录查找 whereis 文件或目录 在几个特定目录查找</p>
+<p>find 目录 [-name/user/size] 参数</p>
+<p>find  ./ 当前目录下 -name 查找名称 1.txt 文件名<br>find / -name 1.txt 根目录下查找<br>find / -name ‘passwd’<br>find / -name ‘pass*’ *表示任意的个数的任意字符<br>find / -name ‘pass??’ ? 表示任意单个字符<br>find / -user ‘root’ 查找root用户创建的文件</p>
+<p>用户管理：<br>查看当前连接的用户：who<br> useradd [-g 群组] 用户名</p>
+<p> sudo useradd -g root gaoguqi<br> sudo passwd gaoguqi 给用户设置密码</p>
+<p> passwd 用户名<br> userdel [-r] 用户名 -r 同时删除用户家目录</p>
+<p> groups [用户名]<br> groupadd 群组名<br> groupdel 名<br> usermod -g 群组名 用户名<br>群组管理：</p>
+<p>r 读<br>w 写<br>x 执行<br>ls -l<br>文件类型 所有者权限 所属组权限 其它用户权限<br>d rwx r-x r-x</p>
+<ul>
+<li>表示文件<br>d 表示目录<br>l 表示连接</li>
+</ul>
+<p>chown -R 用户名 文件或目录 -R递归处理目录所有内容<br>chown -R 用户名:组名 文件或目录 -R递归处理目录所有内容<br>chgrp -R 组名 文件或目录 -R递归处理目录所有内容</p>
+<p>修改权限<br>chmod - R xyz 文件或目录<br>x所有者权限 y 所属组权限 z 其它用户权限<br>r 4 w 2 x 1<br>7表示rwx<br>chmod -R 777 gaotao<br>chmod -R 755 gaotao </p>
+<p>或者<br>chmod -R xyz 文件目录<br>x 角色 u  所属用户g 所有组o 其它用户 a全部<br>y +- 增加或者取消<br>z r w x</p>
+<p>gzip bizp2 xz tar 打包 zip<br>tar [-ctxzjJvf] 压缩文件 [源文件]<br>c 打包压缩 t 查看内容 x 解打包解压缩<br>z 使用 gzip方式 j 使用bzip2 方式 J 使用xz 方式<br>v显示过程 f 指定压缩包名</p>
+<p>tar -cvf mytar.tar 1.txt </p>
+<p>tar -cvf mytar.tar aaadir</p>
+<p>使用gzip方式压缩打包<br>tar -czvf mytar.tar.gz 1.txt </p>
+<p>tar -czvf mytar.tar.gz aaadir</p>
+<p>查看压缩包内容<br>tar -tvf mytar.tar</p>
+<p>tar -tzvf mytar.tar.gz </p>
+<p>rm -rf *.txt 删除所有txt文件</p>
+<p>curl wget 下载<br>tar 解压<br>编译前配置 ./configure<br>make<br>make clean</p>
+<p>下载rmp包<br>rmp -ivh 软件包<br>i安装 v显示详细信息 h 显示进度<br>rpm -q 安装包 查询是否安装<br>rmp -e 安装包 卸载</p>
+<p>从yum源获取<br>yum list 名称 查询可以安装的软件包<br>yum -y install 软件包</p>
+<p>yum remove  卸载<br>yum update 更新</p>
+<p>apt-get install</p>
+<p>ifconfig 查看ip地址<br>uname -a 显示Linux内核版本和系统<br>x86-64表示64位<br>cat /proc/version 查看linux 版本</p>
+<h2 id="2-常用命令"><a href="#2-常用命令" class="headerlink" title="2. 常用命令"></a>2. 常用命令</h2><h3 id="2-1-文件操作"><a href="#2-1-文件操作" class="headerlink" title="2.1 文件操作"></a>2.1 文件操作</h3><p>###2.2 vim 命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">创建文件 touch a.txt</span><br><span class="line">vi 命令模式  </span><br><span class="line">dd 剪切当前行</span><br><span class="line">yy复制当前行</span><br><span class="line">p 黏贴 光标下一行黏贴 shift p 光标上一行黏贴</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">a 光标后插入</span><br><span class="line">A 当前行之后插入</span><br><span class="line">i 光标前插入</span><br><span class="line">I 当前行之前插入</span><br><span class="line">o 当前行之下插入</span><br><span class="line">O 上一行插入</span><br><span class="line">编辑模式 </span><br><span class="line"></span><br><span class="line">: 或/ 进入 行模式</span><br><span class="line">w保存 </span><br><span class="line">wq 保存并退出</span><br><span class="line">q 退出</span><br><span class="line">q! 不保存退出</span><br><span class="line">:set nu 显示行号</span><br><span class="line">clear 清除屏幕</span><br></pre></td></tr></table></figure>
+<h3 id="2-3-进程管理"><a href="#2-3-进程管理" class="headerlink" title="2.3 进程管理"></a>2.3 进程管理</h3><p>w 查看当前登录用户<br>ps -ef | grep pts 查看当前用户进程<br>kill -9 进程号 杀掉进程</p>
+<h2 id="3-常见问题"><a href="#3-常见问题" class="headerlink" title="3. 常见问题"></a>3. 常见问题</h2><h3 id="3-1-远程连接客户端putty"><a href="#3-1-远程连接客户端putty" class="headerlink" title="3.1 远程连接客户端putty"></a>3.1 远程连接客户端putty</h3><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">--putty经常自动断开的问题</span><br><span class="line">vim /etc/ssh/sshd<span class="emphasis">_config</span></span><br><span class="line"><span class="emphasis">添加</span></span><br><span class="line"><span class="emphasis">ClientAliveInterval 30</span></span><br><span class="line"><span class="emphasis">ClientAliveCountMax 86400</span></span><br><span class="line"><span class="emphasis">这两行的意思分别是</span></span><br><span class="line"><span class="emphasis">1、服务端每隔多少秒向客户端发送一个心跳数据</span></span><br><span class="line"><span class="emphasis">2、客户端多少次没有相应，服务器自动断掉连接</span></span><br><span class="line"><span class="emphasis">然后重启service sshd restart</span></span><br><span class="line"><span class="emphasis"></span></span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/linux/" rel="tag"># linux</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019/11/21/sublime%E4%B8%8B%E4%BD%BF%E7%94%A8markdown%E6%8C%87%E5%8D%97/" rel="prev" title="Sublime下使用Markdown指南">
+                  <i class="fa fa-chevron-left"></i> Sublime下使用Markdown指南
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2019/11/21/Windows-PowerShell%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" rel="next" title="Windows PowerShell使用指南">
+                  Windows PowerShell使用指南 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Gao Laohan</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

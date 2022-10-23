@@ -950,7 +950,7 @@ int main(void)
 <p>效果：<br>我在[北京邮电大学][1] 读书，女朋友在[北京师范大学][2] 读书，我们在[北京大学][3] 上课时认识。<br>[1]: <a target="_blank" rel="noopener" href="http://www.bupt.edu.cn/">www.bupt.edu.cn</a> “北邮”<br>[2]: <a target="_blank" rel="noopener" href="http://www.bnu.edu.cn/">www.bnu.edu.cn</a> “北师大”<br>[3]: <a target="_blank" rel="noopener" href="http://www.pku.edu.cn/">www.pku.edu.cn</a> “北大”</p>
 <p>自动链接：<br>Markdown支持以比较简短的自动链接形式来处理网址和电子邮件信箱，只要使用&lt;&gt;包起来，Markdown就会自动把它转为链接。<br>代码：  </p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;http://www.bupt.edu.cn&gt;</span><br><span class="line">&lt;wangdachui@bupt.edu.cn&gt;</span><br></pre></td></tr></table></figure>
-<p>效果：<br><a target="_blank" rel="noopener" href="http://www.bupt.edu.cn/">http://www.bupt.edu.cn</a><br><a href="mailto:&#119;&#97;&#110;&#103;&#x64;&#x61;&#x63;&#x68;&#x75;&#105;&#x40;&#x62;&#x75;&#x70;&#x74;&#46;&#101;&#x64;&#x75;&#x2e;&#99;&#110;">&#119;&#97;&#110;&#103;&#x64;&#x61;&#x63;&#x68;&#x75;&#105;&#x40;&#x62;&#x75;&#x70;&#x74;&#46;&#101;&#x64;&#x75;&#x2e;&#99;&#110;</a></p>
+<p>效果：<br><a target="_blank" rel="noopener" href="http://www.bupt.edu.cn/">http://www.bupt.edu.cn</a><br><a href="mailto:&#x77;&#97;&#110;&#x67;&#x64;&#x61;&#x63;&#x68;&#x75;&#x69;&#64;&#98;&#x75;&#112;&#x74;&#46;&#101;&#x64;&#x75;&#x2e;&#x63;&#110;">&#x77;&#97;&#110;&#x67;&#x64;&#x61;&#x63;&#x68;&#x75;&#x69;&#64;&#98;&#x75;&#112;&#x74;&#46;&#101;&#x64;&#x75;&#x2e;&#x63;&#110;</a></p>
 <h3 id="2-6-插入图片"><a href="#2-6-插入图片" class="headerlink" title="2.6 插入图片"></a>2.6 插入图片</h3><p>图片的语法类似链接。alt text是替换文本；在图像无法显示时才呈现出来。<br>行内形式：  </p>
 <p>代码：</p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![<span class="string">alt text</span>](<span class="link">https://pic1.zhimg.com/80/v2-de2e829ad6b60930009b8bd1eb05057c_hd.jpg &quot;图片&quot;</span>)</span><br></pre></td></tr></table></figure>
@@ -1060,7 +1060,7 @@ int main(void)
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-10-22 23:02:02" itemprop="dateModified" datetime="2022-10-22T23:02:02+08:00">2022-10-22</time>
+      <time title="修改时间：2022-10-23 18:35:30" itemprop="dateModified" datetime="2022-10-23T18:35:30+08:00">2022-10-23</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1096,6 +1096,9 @@ int main(void)
 <li>zh-TW.yml<br>打开站点根目录/_config.yml文件，设置language内容为： <code>language: zh-CN</code> </li>
 </ul>
 <h3 id="3-2-将网站生成代码备份到github"><a href="#3-2-将网站生成代码备份到github" class="headerlink" title="3.2 将网站生成代码备份到github"></a>3.2 将网站生成代码备份到github</h3><p>在github上创建项目，比如username-blog-generator，然后使用ssh克隆到本地，在目录username-blog-generator上进行相关的commit push操作就可以了。</p>
+<h3 id="3-3-CNAME"><a href="#3-3-CNAME" class="headerlink" title="3.3 CNAME"></a>3.3 CNAME</h3><p>CNAME 里面存放 gaolaohan.com</p>
+<h3 id="3-4-hexo自动发布到github"><a href="#3-4-hexo自动发布到github" class="headerlink" title="3.4 hexo自动发布到github"></a>3.4 hexo自动发布到github</h3><p>安装自动部署工具 <code>npm install hexo-deployer-git --save</code><br>hexo d 就可以直接部署到github中了<br>_config.yml中配置deploy信息</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repository: git@github.com:gaolaohan/gaolaohan.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
 
       
     </div>
